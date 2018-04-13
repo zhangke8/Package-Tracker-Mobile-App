@@ -1,0 +1,27 @@
+<div class = 'panel panel-primary' *ngIf = 'order'>
+  <div class = 'panel-heading'>
+    {{order.orderName}}
+  </div>
+  <div class = 'panel-body'>
+      <div class='row'>
+          <div class='col-md-6'>
+              <img class='center-block img-responsive' 
+                   [style.width.px]='200' 
+                   [style.margin.px]='2' 
+                   [src]='order.imageUrl'
+                   >
+          </div>
+          <div class='col-md-6'>
+              <div class='row'>
+                  <div class='col-md-3'>Name:</div>
+                  <div class='col-md-6'>{{order.orderName}}</div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class = 'panel-footer'>
+    <a class= 'btn btn-default' (click) = 'onBack()' style= 'widows: 80px'>
+        <i class='glyphicon glyphicon-chevron-left'></i> Back
+    </a>
+  </div>
+</div>
