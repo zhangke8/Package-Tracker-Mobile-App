@@ -1,51 +1,50 @@
 var MongoClient = require('mongodb').MongoClient;
-const express = require("express");
-const app = express();
+var express = require("express");
+var router = express.Router();
+var mongo = require("mongodb").MongoClient;
+var url = 'mongodb://localhost:27017';
 
-const PORT = 8080;
+const PORT = 27017;
 app.listen(PORT, () => {});
-
-MongoClient.connect('mongodb://localhost:4001/tracker', function (err, db) {
-  if (err) throw err
-  db.collection('orders').find(trackerid).toArray(function (err, result) {
-    if (err) throw err
-  })
-})
 
 // reloads browser
 app.use(express.status('public'));
 
-// get request to display package's tracking route
-app.get('/tracker', (req, res, next) => {
-	let trackerid = req.params.id;
-	let data = MongoClient.connect('mongodb://localhost:4001/tracker', function (err, db) {
-	  if (err) throw err
-	  db.collection('orders').find(trackerid).toArray(function (err, result) {
-		if (err) throw err
-	  })
-	}); // get data from mongodb
-	if (data) {
-		res.send(data);
-	}
-	else {
-		res.status(404).send();
-	}
+router.get('/', (req, res, next)=>{
+	res.render('index');
 });
 
-// update product location
-app.put('/tracker', (req, res, next) => {
-	let trackerid = req.params.id;
-	let data = MongoClient.connect('mongodb://localhost:4001/tracker', function (err, db) {
-	  if (err) throw err
-	  db.collection('orders').find(trackerid).toArray(function (err, result) {
-		if (err) throw err
-	  })
-	}); // do proper mongodb checks on if index exists
-	if (data) {
-		let data; // get data from mongodb
-		res.send(data);
-	}
-	else {
-		res.status(404).send();
-	}
+router.get('/get-data', (req, res, next)=>{
+	var results = [];
+	mongo.connect(url, (err, db)=> {
+		assert.equal(null, err);
+		var pointer = db.collection('orders').find();
+		pointer.forEach((doc, err)=>{
+			assert.equal(null, err);
+			result.push(doc);
+		}, ()=>{
+			db.close();
+			res.render('index', {orders: results});
+		});
+	});
+});
+
+router.post('/insert', (req, res, next)=>{
+	var order = {
+		name: req.body.name,
+		img: req.body.img,
+		price: req.body.price,
+		locate: req.body.locate
+	};
+
+	mongo.connect(url, (err, db)=> {
+		assert.equal(null, err);
+		db.collection('orders').insertOne(order, (err, result)=>{
+			assert.equal(null, err);
+			console.log('item inserted');
+			db.close();
+		});
+	});
+
+	res.redirect('/');
 });
