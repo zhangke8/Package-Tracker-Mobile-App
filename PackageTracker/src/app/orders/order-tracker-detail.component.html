@@ -1,4 +1,4 @@
-<div class = 'panel panel-primary' *ngIf = 'order'>
+<div class = 'panel panel-primary' *ngIf = 'order && trackstatus && tracklocations'>
   <div class = 'panel-heading'>
     {{order.orderName}}
   </div>
@@ -11,14 +11,37 @@
                    [src]='order.imageUrl'
                    >
           </div>
-          <div class='col-md-6'>
-              <div class='row'>
-                  <div class='col-md-3'>Name:</div>
-                  <div class='col-md-6'>{{order.orderName}}</div>
-              </div>
-          </div>
+      </div>
+      <div class = 'row'>
+            <div class='col-md-6' >
+            Ordered <input type='checkbox' [checked] = 'trackstatus.status>0' readonly /> 
+            Shipped <input type='checkbox' [checked] = 'trackstatus.status>1' readonly />
+            Out for delivery <input type='checkbox' [checked] = 'trackstatus.status>2' readonly />
+            Delivered <input type='checkbox' [checked] = 'trackstatus.status>3' readonly />
+            </div>
+      </div>
+
+      <div class = 'table-responsive'>
+            <table class = 'table' *ngIf = 'tracklocations && tracklocations.length'>
+                    <thead>
+                            <tr>
+                              <th> Date </th>
+                              <th> Location </th>
+                              <th> Description </th>
+                            </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor = 'let track of tracklocations'>
+                            <td>{{track.date}}</td>
+                            <td>{{track.location}}</td>
+                            <td>{{track.description}}</td>
+
+                        </tr>
+                    </tbody>
+            </table>
       </div>
   </div>
+  
   <div class = 'panel-footer'>
     <a class= 'btn btn-default' (click) = 'onBack()' style= 'widows: 80px'>
         <i class='glyphicon glyphicon-chevron-left'></i> Back
