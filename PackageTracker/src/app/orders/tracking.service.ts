@@ -1,26 +1,27 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { IOrder } from './order';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/throw';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/map';
-
+import { ITrackingLocations } from './trackinglocations';
+import { ITrackingStatus } from './trackingstatus';
 @Injectable()
-export class OrderService {
-    private _productUrl = './api/orders/orders.json';
+export class TrackingService {
+    private _trackingUrl = './api/tracking/trackings.json';
     constructor(private _http: HttpClient) { }
-    getOrders(): Observable<IOrder[]> {
-        return this._http.get<IOrder[]>(this._productUrl)
-             .do(data => console.log('All: ' + JSON.stringify(data)))
-            .catch(this.handleError);
+    getTracking(): Observable<ITrackingStatus[]> {
+        return this._http.get<ITrackingStatus[]>(this._trackingUrl)
+        .do(data => console.log('Data: ' + JSON.stringify(data)))
+        .catch(this.handleError);
     }
 
-    getOrder(id: string): Observable<IOrder> {
-        return this.getOrders()
-            .map((orders: IOrder[]) => orders.find(o => o.trackerId === id));
+    getTrackerDetail(id: string): Observable<ITrackingStatus> {
+        return this.getTracking()
+            .map((orders: ITrackingStatus[]) => orders.find(o => o._id === id));
     }
+
 
     private handleError(err: HttpErrorResponse) {
         // in a real world app, we may send the server to some remote logging infrastructure
