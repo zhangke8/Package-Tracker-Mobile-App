@@ -13,14 +13,6 @@ router.get('/', (req, res, next)=>{
 	res.render('index');
 });
 
-var model = mongo.model('data', OrdersSchema, 'data');
-var db = MongoClient.connect("mongodb://localhost:27017/AngularCRUD", function (err, response) {
-  if (err) { console.log(err); }
-  else { console.log('Connected to ' + db, ' + ', response); }
-});
-
-var Schema = MongoClient.Schema;
-
 var OrdersSchema = new Schema({
   orderId: { type: String },
   orderName: { type: String },
@@ -28,6 +20,14 @@ var OrdersSchema = new Schema({
   price: {type: Number},
   imageUrl: {type:String}
 }, { versionKey: false });
+
+var model = mongo.model('data', OrdersSchema, 'data');
+var Schema = MongoClient.Schema;
+
+var db = MongoClient.connect("mongodb://localhost:27017/AngularCRUD", function (err, response) {
+  if (err) { console.log(err); }
+  else { console.log('Connected to ' + db, ' + ', response); }
+});
 
 router.get('orders/getOrder', (req, res, next)=>{
 	var results = [];
