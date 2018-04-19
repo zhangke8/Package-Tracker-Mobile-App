@@ -1,7 +1,6 @@
 var MongoClient = require('mongodb').MongoClient;
 var express = require("express");
 var router = express.Router();
-var mongo = require("mongodb").MongoClient;
 var url = 'mongodb://localhost:27017';
 
 const PORT = 27017;
@@ -14,25 +13,43 @@ router.get('/', (req, res, next)=>{
 	res.render('index');
 });
 
-router.get('/get-data', (req, res, next)=>{
+var model = mongo.model('data', OrdersSchema, 'data');
+var db = MongoClient.connect("mongodb://localhost:27017/AngularCRUD", function (err, response) {
+  if (err) { console.log(err); }
+  else { console.log('Connected to ' + db, ' + ', response); }
+});
+
+var Schema = MongoClient.Schema;
+
+var OrdersSchema = new Schema({
+  orderId: { type: String },
+  orderName: { type: String },
+  trackerId: {type: Number},
+  price: {type: Number},
+  imageUrl: {type:String}
+}, { versionKey: false });
+
+router.get('orders/getOrder', (req, res, next)=>{
 	var results = [];
 	mongo.connect(url, (err, db)=> {
 		assert.equal(null, err);
 		var pointer = db.collection('orders').find();
 		pointer.forEach((doc, err)=>{
 			assert.equal(null, err);
-			result.push(doc);
+			results.push(doc);
 		}, ()=>{
 			db.close();
 			res.render('index', {orders: results});
 		});
 	});
 });
-
-router.post('/insert', (req, res, next)=>{
+ 
+router.post('orders/insertOrder', (req, res, next)=>{
 	var order = {
-		name: req.body.name,
-		img: req.body.img,
+		Id: req.body.Id,
+		name: req.body.orderName,
+		trackerId: req.body.trackerId,
+		img: req.body.imageUrl,
 		price: req.body.price,
 		locate: req.body.locate
 	};
