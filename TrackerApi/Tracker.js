@@ -14,17 +14,16 @@ router.get('/', (req, res, next)=>{
 });
 
 var OrdersSchema = new Schema({
-  orderId: { type: String },
-  orderName: { type: String },
-  trackerId: {type: Number},
-  price: {type: Number},
-  imageUrl: {type:String}
+  Id: { type: String },
+  locate: {type: String },
+  description: {type: Number },
+  date: {type: Date }
 }, { versionKey: false });
 
 var model = mongo.model('data', OrdersSchema, 'data');
 var Schema = MongoClient.Schema;
 
-var db = MongoClient.connect("mongodb://localhost:27017/AngularCRUD", function (err, response) {
+var db = MongoClient.connect("mongodb://localhost:27017", function (err, response) {
   if (err) { console.log(err); }
   else { console.log('Connected to ' + db, ' + ', response); }
 });
@@ -47,11 +46,10 @@ router.get('orders/getOrder', (req, res, next)=>{
 router.post('orders/insertOrder', (req, res, next)=>{
 	var order = {
 		Id: req.body.Id,
-		name: req.body.orderName,
 		trackerId: req.body.trackerId,
-		img: req.body.imageUrl,
-		price: req.body.price,
-		locate: req.body.locate
+		ocate: req.body.locate,
+		description: req.body.description,
+		date: req.body.date
 	};
 
 	mongo.connect(url, (err, db)=> {
