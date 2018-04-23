@@ -15,7 +15,6 @@ export class OrderTrackerDetailComponent implements OnInit {
   trackstatus: ITrackingStatus;
   tracklocations: ITrackingLocations[];
   errorMessage: string;
-  test = 'my test';
   constructor(private _route: ActivatedRoute,
     private _router: Router,
     private _orderService: OrderService,

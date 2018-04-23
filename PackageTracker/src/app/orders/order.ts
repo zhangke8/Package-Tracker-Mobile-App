@@ -1,5 +1,5 @@
 export interface IOrder {
-    orderId: string;
+    _id: string;
     orderName: string;
     trackerId: string;
     price: number;
