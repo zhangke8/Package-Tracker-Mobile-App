@@ -5,7 +5,7 @@ var mongo = require("mongoose");
 var logger = require('morgan');
 var morganBody = require('morgan-body');
 
-var db = mongo.connect("mongodb://localhost/PackageTracking", function (err, response) {
+var db = mongo.connect("mongodb://localhost:27017/PackageTracking", function (err, response) {
   if (err) { console.log(err); }
   else { console.log('Connected to ' + db, ' + ', response); }
 });
