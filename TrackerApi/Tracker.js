@@ -1,29 +1,37 @@
-var MongoClient = require('mongodb').MongoClient;
 var express = require("express");
+var path = require("path");
+var bodyParser = require('body-parser');
+var mongo = require("mongoose");
+
 var router = express.Router();
-var url = 'mongodb://localhost:27017';
 
-const PORT = 27017;
-app.listen(PORT, () => {});
+router.use(function(req, res, next) {
+  console.log('Something is happening.');
+  next(); 
+});
 
-// reloads browser
-app.use(express.status('public'));
+
+var app = express();
+app.use(bodyParser.json());
+app.use(logger('dev'));
 
 router.get('/', (req, res, next)=>{
 	res.render('index');
 });
 
-var OrdersSchema = new Schema({
-  Id: { type: String },
-  locate: {type: String },
-  description: {type: Number },
-  date: {type: Date }
+app.use('/api', router);
+var Schema = mongo.Schema;
+
+var OrderSchema = new Schema({
+  orderName: String,
+  trackerId: String,
+  price: Number,
+  imageUrl: String
 }, { versionKey: false });
 
-var model = mongo.model('data', OrdersSchema, 'data');
-var Schema = MongoClient.Schema;
+var Orders = mongo.model('orders', OrderSchema,'orders');
 
-var db = MongoClient.connect("mongodb://localhost:27017", function (err, response) {
+var db = mongo.connect("mongodb://localhost:27017/PackageTracking", function (err, response) {
   if (err) { console.log(err); }
   else { console.log('Connected to ' + db, ' + ', response); }
 });
