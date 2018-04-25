@@ -10,7 +10,6 @@ router.use(function(req, res, next) {
   next(); 
 });
 
-
 var app = express();
 app.use(bodyParser.json());
 app.use(logger('dev'));
@@ -68,3 +67,4 @@ router.post('/insert', (req, res, next)=>{
 	})
 	res.redirect('/');
 });
+
