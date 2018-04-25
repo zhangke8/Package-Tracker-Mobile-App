@@ -43,7 +43,7 @@ router.get('/get-data', (req, res, next)=>{
 	});
 });
 
-router.post('/orders', (req, res, next)=>{
+router.post('/insert', (req, res, next)=>{
 	var products = [
 		{name:"computer", price:900.00, imageUrl:"https://pisces.bbystatic.com/image2/BestBuy_US/store/ee/2015/com/pm/nav_desktops_1115.jpg", orderID:4561237978, trackerID:489712165498461165},
 		{name:"tablet", price:300.00, imageUrl:"https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2018/01/31/goods-img/1517356503798430531.jpg", orderID:7896526526, trackerID:789456232619849165},
