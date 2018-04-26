@@ -17,9 +17,9 @@ var OrderSchema = new Schema({
   trackerId: String,
   price: Number,
   imageUrl: String
-}, { collection: 'orders' });
+}, { collection: 'products' });
 
-var Order = mongoose.model('orders', OrderSchema, 'orders');
+var Order = mongoose.model('products', OrderSchema, 'products');
 var products = [
 	 Order({
 			orderName:"computer", 
