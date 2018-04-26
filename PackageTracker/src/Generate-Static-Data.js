@@ -47,6 +47,7 @@ var products = [
 			trackerID:784982062984984654
 		})
  ];
+
 mongoose.connect("mongodb://localhost:27017/PackageTracking", function (err, response) {
 	if (err) { console.log(err); }
 	else { console.log('Connected to ' + response); }
