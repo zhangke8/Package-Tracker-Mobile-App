@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { IOrder } from './order';
-import { OrderApiService } from './orderApi.service';
+import { OrderService } from './order.service';
+import { ItemService } from '../items/item.service';
+import { IItem } from '../items/item';
 
 @Component({
   selector: 'app-create-order',
@@ -9,21 +11,28 @@ import { OrderApiService } from './orderApi.service';
 })
 export class CreateOrderComponent implements OnInit {
   order: IOrder;
-  constructor(private _apiService: OrderApiService) { }
+  constructor(private orderService: OrderService, private itemService: ItemService) { }
   errorMessage: string;
-  data: IOrder[] = [];
+  itemList: IItem[] = [];
+  orderList: IOrder[] = [];
+  productList: any = {};
+  total: number;
   submit = true;
   ngOnInit() {
-    console.log('run in create order');
+    this.total = 0;
     this.submit = true;
-    this.order = {_id: '', orderName : '', trackerId: '', price: null, imageUrl: ''};
-    this._apiService.getOrders().subscribe(data => this.data = data);
+    this.order = {_id: '', trackerId: '', price: null, orderItems: null};
+    this.orderService.getOrders().subscribe(data => this.orderList = data);
+    this.itemService.getItems().subscribe(data => this.itemList = data);
   }
 
   onSave(order) {
-    console.log('save');
+    const stringifiedOrder = JSON.stringify(order);
+    const parsedOrder = JSON.parse(stringifiedOrder);
+    parsedOrder.price = this.total;
+    parsedOrder.orderItems = this.productList;
     if (this.submit) {
-      this._apiService.saveOrder(order).subscribe(data => {
+      this.orderService.saveOrder(parsedOrder).subscribe(data => {
         console.log('data onSave' + JSON.stringify(data.data));
         alert(data.data);
         this.ngOnInit();
@@ -32,7 +41,7 @@ export class CreateOrderComponent implements OnInit {
      );
     } else {
       alert(this.order._id);
-      this._apiService.updateOrder(order, this.order._id).subscribe(data => {
+      this.orderService.updateOrder(order, this.order._id).subscribe(data => {
         console.log('data onUpdate' + JSON.stringify(data.data));
         alert(data.data);
         this.ngOnInit();
@@ -43,20 +52,40 @@ export class CreateOrderComponent implements OnInit {
   }
   onEdit(order) {
     this.order._id = order._id;
-    this.order.orderName = order.orderName;
     this.order.price = order.price;
+    this.total = order.price;
     this.order.trackerId = order.trackerId;
-    this.order.imageUrl = order.imageUrl;
     this.submit = false;
   }
 
   onDelete(order, id: string) {
-    this._apiService.deleteOrder(order, id).subscribe(data => {
+    this.orderService.deleteOrder(order, id).subscribe(data => {
       console.log('data onDelete' + JSON.stringify(data.data));
       alert(data.data);
       this.ngOnInit();
      },
      error => this.errorMessage = error
     );
+  }
+
+  addItem(item) {
+    this.total += item.price;
+    this.total = Number(this.total.toFixed(2));
+    if (this.productList.hasOwnProperty(item._id)) {
+      this.productList[item._id] += 1;
+    } else {
+      this.productList[item._id] = 1;
+    }
+    console.log(JSON.stringify(this.productList));
+  }
+
+  removeItem(item) {
+    if (this.productList.hasOwnProperty(item._id)) {
+      if (this.productList[item._id] > 0) {
+        this.productList[item._id] -= 1;
+        this.total -= item.price;
+        this.total = Number(this.total.toFixed(2));
+      }
+    }
   }
 }

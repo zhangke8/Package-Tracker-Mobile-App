@@ -1,15 +1,30 @@
 <div class="container">
+  <div class = 'table-responsive'>
+    <table class = 'table' *ngIf = 'itemList && itemList.length'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Price</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor='let item of itemList'>
+          <td>{{item.name}}</td>
+          <td>{{item.price}}</td>
+          <td><button type="button" class="btn btn-primary" (click) = "addItem(item)">Add</button></td>
+          <td><button type="button" class = "btn btn-danger" (click) = "removeItem(item)">Remove</button></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
   <h1>Order Form</h1>
   <form #orderForm="ngForm" (ngSubmit) = "onSave(orderForm.value)">
 
     <div class="form-group">
-      <label for="orderName">Name</label>
-      <input type="text" class="form-control" id="orderName" [(ngModel)] = 'order.orderName' name = 'orderName' required>
-    </div>
-
-    <div class="form-group">
-      <label for="price"> Price </label>
-      <input type="text" class="form-control" id="price" [(ngModel)] = 'order.price' name = 'price' required>
+      <label for="price"> Price </label>  ${{total}}
     </div>
 
     <div class="form-group">
@@ -17,36 +32,27 @@
         <input type="text" class="form-control" id="trackerId" [(ngModel)] = 'order.trackerId' name = 'trackerId' required>
       </div>
 
-    <div class="form-group">
-      <label for="imageUrl"> Image Url </label>
-      <input type="text" class="form-control" id="imageUrl" [(ngModel)] = 'order.imageUrl' name = 'imageUrl' required>
-    </div>
-
     <button type="submit" class="btn btn-success">{{submit ? 'Submit' : 'Update'}}</button> 
     <button type="button" (click) = "ngOnInit()" class = "btn btn-danger">Clear</button>
 </form>
 <div>
 
 </div>
-  <table class="table" border='1' *ngIf='data && data.length'>
+  <table class="table" border='1' *ngIf='orderList && orderList.length'>
       <thead class="thead-dark">
         <tr>
           <th scope="col">ID</th>
-          <th scope="col">Name</th>
           <th scope="col">Price</th>
           <th scope="col">Track ID</th>
-          <th scope="col">Image Url</th>
           <th scope="col">Update</th>
           <th scope="col">Delete</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let order of data">
+        <tr *ngFor="let order of orderList">
           <td>{{order._id}}</td>
-          <td>{{order.orderName}}</td>
           <td>{{order.price}}</td>
           <td>{{order.trackerId}}</td>
-          <td>{{order.imageUrl}}</td>
           <td><button type="button" (click)="onEdit(order)" class="btn btn-primary">Edit</button></td>
           <td><button type="button" (click)="onDelete(order,order._id)" class="btn btn-danger">Delete</button></td>
         </tr>
