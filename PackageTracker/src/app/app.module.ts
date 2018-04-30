@@ -7,13 +7,15 @@ import { OrderListComponent } from './orders/order-list.component';
 import { OrderTrackerDetailComponent } from './orders/order-tracker-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { CreateOrderComponent } from './orders/create-order.component';
+import { ProductListComponent } from './products/product-list.component'
 import { HttpModule } from '@angular/http';
 @NgModule({
   declarations: [
     AppComponent,
     OrderListComponent,
     OrderTrackerDetailComponent,
-    CreateOrderComponent
+    CreateOrderComponent,
+    ProductListComponent
   ],
   imports: [
     BrowserModule,
@@ -24,6 +26,7 @@ import { HttpModule } from '@angular/http';
       { path: 'orderlist', component: OrderListComponent },
       { path: 'createorder', component: CreateOrderComponent},
       { path: 'ordertracking/:id', component: OrderTrackerDetailComponent},
+      { path: 'products', component: ProductListComponent},
       { path: '', redirectTo: 'orderlist', pathMatch: 'full'},
       { path: '**', redirectTo: 'orderlist', pathMatch: 'full'}
     ])
