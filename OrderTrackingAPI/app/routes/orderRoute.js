@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Order = require('../../model/order')
-
+const Item = require('../../model/item')
 router.route('/orders')
 
   .post(function(req, res){
@@ -63,6 +63,29 @@ router.route('/orders')
   
     router.route('/orders/items/:order_id')
     .get(function(req, res){
-      res.send('Get order id');
+      Order.findById(req.params.order_id, function(err, data){
+        if (err) {
+          res.send(err);
+        }
+        else{
+          console.log("length:" + Object.keys(data.orderItems).length);
+          let retData  = [];
+          let index = 0;
+          Object.keys(data.orderItems).forEach(function(key) {
+            Item.findById(key, function(err,itemData){
+              // console.log('retData push');
+              const stringifedIem = JSON.stringify(itemData);
+              const parsedItem = JSON.parse(stringifedIem);
+              parsedItem.quantity = data.orderItems[key];
+              retData.push(parsedItem);
+              index += 1;
+              // console.log('retData : inside loop' +  JSON.stringify(retData));
+              if (index == Object.keys(data.orderItems).length) {
+                res.send(retData);
+              }
+            });
+          })
+        }
+      });
     })
 module.exports = router;

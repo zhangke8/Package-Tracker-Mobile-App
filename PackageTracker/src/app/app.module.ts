@@ -8,11 +8,13 @@ import { CreateOrderComponent } from './orders/create-order.component';
 import { HttpModule } from '@angular/http';
 import { OrderService } from './orders/order.service';
 import { ItemService } from './items/item.service';
+import { OrderDetailComponent } from './orders/order-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateOrderComponent
+    CreateOrderComponent,
+    OrderDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +23,7 @@ import { ItemService } from './items/item.service';
     HttpClientModule,
     RouterModule.forRoot([
       { path: 'createorder', component: CreateOrderComponent},
+      { path: 'orderdetail/:id', component: OrderDetailComponent},
       { path: '', redirectTo: 'createorder', pathMatch: 'full'},
       { path: '**', redirectTo: 'createorder', pathMatch: 'full'}
     ])

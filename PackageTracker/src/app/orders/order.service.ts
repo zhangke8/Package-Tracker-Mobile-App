@@ -12,6 +12,11 @@ export class OrderService {
         return this.http.post(this.orderUrl, order)
         .map((response: Response) => response.json());
     }
+    getOrderItems(id: string) {
+        return this.http.get(this.orderUrl + '/items/' + id)
+        .map((response: Response) => response.json());
+    }
+
     getOrders() {
         return this.http.get(this.orderUrl)
         .map((response: Response) => response.json());

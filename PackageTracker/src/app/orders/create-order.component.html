@@ -5,6 +5,7 @@
         <tr>
           <th>Name</th>
           <th>Price</th>
+          <th>Quantity</th>
           <th></th>
           <th></th>
         </tr>
@@ -13,6 +14,7 @@
         <tr *ngFor='let item of itemList'>
           <td>{{item.name}}</td>
           <td>{{item.price}}</td>
+          <td>{{item.added}}</td>
           <td><button type="button" class="btn btn-primary" (click) = "addItem(item)">Add</button></td>
           <td><button type="button" class = "btn btn-danger" (click) = "removeItem(item)">Remove</button></td>
           <td></td>
@@ -50,7 +52,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let order of orderList">
-          <td>{{order._id}}</td>
+          <td><a [routerLink] = "['/orderdetail',order._id]">{{order._id}}</a></td>
           <td>{{order.price}}</td>
           <td>{{order.trackerId}}</td>
           <td><button type="button" (click)="onEdit(order)" class="btn btn-primary">Edit</button></td>

@@ -73,10 +73,11 @@ export class CreateOrderComponent implements OnInit {
     this.total = Number(this.total.toFixed(2));
     if (this.productList.hasOwnProperty(item._id)) {
       this.productList[item._id] += 1;
+       item.added += 1;
     } else {
       this.productList[item._id] = 1;
+       item.added += 1;
     }
-    console.log(JSON.stringify(this.productList));
   }
 
   removeItem(item) {
@@ -85,6 +86,7 @@ export class CreateOrderComponent implements OnInit {
         this.productList[item._id] -= 1;
         this.total -= item.price;
         this.total = Number(this.total.toFixed(2));
+         item.added -= 1;
       }
     }
   }
