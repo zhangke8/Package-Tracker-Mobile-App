@@ -30,7 +30,7 @@ const Items = [
     Item({
         name:"Car", 
         price:40000.00, 
-        imageUrl:"https://article.images.consumerreports.org/prod/content/dam/CRO%20Images%202018/Magazine/04April/CRM-Cars-inline-TopTen-Toyota-Corolla-2018-4-18",
+        imageUrl:"https://www.paylesscar.com/content/dam/cars/payless/recent-rentals/Compact.png",
         added : 0
     })
 ]
