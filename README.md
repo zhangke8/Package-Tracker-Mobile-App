@@ -4,3 +4,5 @@ i create a slack group, https://join.slack.com/t/miraclesoftwaregroup/shared_inv
 run the following in separate bash terminals: mongod, node app.js, node "Generate-Static-Data"
 
 open up powershell in the folder and run: npm start
+
+This is the old master branch
