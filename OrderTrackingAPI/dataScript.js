@@ -4,13 +4,13 @@ const Item = require('./model/item');
 
 const Items = [
     Item({
-        name:"computer", 
+        name:"Computer", 
         price:900.00, 
         imageUrl:"https://pisces.bbystatic.com/image2/BestBuy_US/store/ee/2015/com/pm/nav_desktops_1115.jpg",
         added : 0	
     }),
     Item({
-        name:"tablet", 
+        name:"Tablet", 
         price:300.00, 
         imageUrl:"https://gloimg.gbtcdn.com/gb/pdm-product-pic/Electronic/2018/01/31/goods-img/1517356503798430531.jpg",
         added : 0
