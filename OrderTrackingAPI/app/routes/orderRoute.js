@@ -5,7 +5,7 @@ const Item = require('../../model/item')
 router.route('/orders')
 
   .post(function(req, res){
-    var newOrder = new Order(req.body);
+    const newOrder = new Order(req.body);
     newOrder.save( function(err, data){
       if (err) {
         console.log(err);

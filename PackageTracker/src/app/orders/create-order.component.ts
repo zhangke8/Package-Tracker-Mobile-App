@@ -25,7 +25,6 @@ export class CreateOrderComponent implements OnInit {
     this.orderService.getOrders().subscribe(data => this.orderList = data);
     this.itemService.getItems().subscribe(data => this.itemList = data);
   }
-
   onSave(order) {
     const stringifiedOrder = JSON.stringify(order);
     const parsedOrder = JSON.parse(stringifiedOrder);
