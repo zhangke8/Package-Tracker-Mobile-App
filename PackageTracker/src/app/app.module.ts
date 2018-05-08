@@ -10,7 +10,7 @@ import { OrderService } from './orders/order.service';
 import { ItemService } from './items/item.service';
 import { ProductListComponent } from './products/product-list.component';
 import { OrderDetailComponent } from './orders/order-detail.component';
-import { imp ProductApiService } from './products/product.service';
+import { ProductApiService } from './products/product.service';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
@@ -43,7 +43,7 @@ import { AuthGuardService } from './authentication/auth-guard.service';
       { path: 'register', component: RegisterComponent},
       { path: 'profile', component: ProfileComponent},
       { path: '', redirectTo: 'home', pathMatch: 'full'},
-      { path: '**', redirectTo: 'createorder', pathMatch: 'full'},
+      { path: '**', redirectTo: 'createorder', pathMatch: 'full'}
     ])
   ],
   providers: [OrderService, ItemService, ProductApiService, AuthenticationService, AuthGuardService],
