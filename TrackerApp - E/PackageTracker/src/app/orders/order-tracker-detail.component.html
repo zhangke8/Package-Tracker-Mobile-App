@@ -1,0 +1,186 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+                <div class = 'panel panel-primary' *ngIf = 'order && trackstatus && tracklocations'>
+                        <div class = 'panel-heading'>
+                          {{order.orderName}}
+                        </div>
+                        <div class = 'panel-body'>
+                            <div class='row'>
+                                <div class='col-md-6'>
+                                    <img class='center-block img-responsive' 
+                                         [style.width.px]='200' 
+                                         [style.margin.px]='2' 
+                                         [src]='order.imageUrl'
+                                         >
+                                </div>
+                            </div>
+                            <div class = 'row'>
+                                  <div class='col-md-6' >
+                                          Shipped <input id="shipped" type='checkbox'   [checked] ='shipped' (change)="shipped = !shipped" />
+                                          Out for delivery <input id="out_for_delivery" type='checkbox' [checked] ='out_for_delivery' (change)="out_for_delivery = !out_for_delivery" />
+                                          Delivered <input id="delivered" type='checkbox'  [checked] ='delivered' (change)="delivered = !delivered" />
+                                  </div>
+                            </div>
+                      
+                           <!-- <div class = 'table-responsive'>
+                                  <table class = 'table' *ngIf = 'tracklocations && tracklocations.length'>
+                                          <thead>
+                                                  <tr>
+                                                    <th> Date </th>
+                                                    <th> Location </th>
+                                                    <th> Description </th>
+                                                  </tr>
+                                          </thead>
+                                          <tbody>
+                                              <tr *ngFor = 'let track of tracklocations'>
+                                                  <td>{{track.date}}</td>
+                                                  <td>{{track.location}}</td>
+                                                  <td>{{track.description}}</td>
+                      
+                                              </tr>
+                                          </tbody>
+                                  </table>
+                            </div>
+                        -->
+                        </div>
+                        
+                        <div class = 'panel-footer'>
+                          <a class= 'btn btn-default' (click) = 'onBack()' style= 'widows: 80px'>
+                              <i class='glyphicon glyphicon-chevron-left'></i> Back
+                          </a>
+                        </div>
+                      </div>
+                      <!-- 
+                      <div class = 'panel panel-primary' *ngIf = 'order && trackstatus && tracklocations'>
+                            <div class = 'panel-heading'>
+                              {{order.orderName}}
+                            </div>
+                            <div class = 'panel-body'>
+                                <div class='row'>
+                                    <div class='col-md-6'>
+                                        <img class='center-block img-responsive' 
+                                             [style.width.px]='200' 
+                                             [style.margin.px]='2' 
+                                             [src]='order.imageUrl'
+                                             >
+                                    </div>
+                                </div>
+                                <div class = 'row'>
+                                      <div class='col-md-6' >
+                                              Ordered <input id="ordered" type='checkbox' [checked] ='ordered' (change)="ordered = !ordered" /> 
+                                              Shipped <input id="shipped" type='checkbox'   [checked] ='shipped' (change)="shipped = !shipped" />
+                                              Out for delivery <input id="out_for_delivery" type='checkbox' [checked] ='out_for_delivery' (change)="out_for_delivery = !out_for_delivery" />
+                                              Delivered <input id="delivered" type='checkbox'  [checked] ='delivered' (change)="delivered = !delivered" />
+                                      </div>
+                                </div>
+                          
+                                <div class = 'table-responsive'>
+                                      <table class = 'table' *ngIf = 'tracklocations && tracklocations.length'>
+                                              <thead>
+                                                      <tr>
+                                                        <th> Date </th>
+                                                        <th> Location </th>
+                                                        <th> Description </th>
+                                                      </tr>
+                                              </thead>
+                                              <tbody>
+                                                  <tr *ngFor = 'let track of tracklocations'>
+                                                      <td>{{track.date}}</td>
+                                                      <td>{{track.location}}</td>
+                                                      <td>{{track.description}}</td>
+                          
+                                                  </tr>
+                                              </tbody>
+                                      </table>
+                                </div>
+                            </div>
+                            
+                            <div class = 'panel-footer'>
+                              <a class= 'btn btn-default' (click) = 'onBack()' style= 'widows: 80px'>
+                                  <i class='glyphicon glyphicon-chevron-left'></i> Back
+                              </a>
+                            </div>
+                          </div>
+                        -->
+        </div>
+        <div class="col-md-6">
+            <!-- Shipped-->
+                <div *ngIf="shipped" class="container" [@list]="tracklocations.length">
+                    <h1>Shipped</h1>
+                        <div class="container">
+                            <table class="table table-striped">
+                                <tr>
+                                <th>Date</th>
+                                <th>Location</th>
+                                <th>Description</th>
+                                </tr>
+                                <tr *ngFor="let x of tracklocations; let i=index">
+                                    <td *ngIf="i ==0">{{x.date}}</td>
+                                    <td *ngIf="i ==0">{{x.location}}</td>
+                                    <td *ngIf="i ==0">{{x.description}}</td>
+                                    <td *ngIf="i ==1">{{x.date}}</td>
+                                    <td *ngIf="i ==1">{{x.location}}</td>
+                                    <td *ngIf="i ==1">{{x.description}}</td>
+                                </tr>
+                              
+                            </table>
+                            </div>
+                            </div>
+                            <!-- Shipped-->
+                        <!-- Out for delivery-->
+                        <div *ngIf="out_for_delivery" class="container" [@list]="tracklocations.length" >
+                                <h1>Our for Delievery</h1>
+                                <div class="container">
+                                    <table class="table table-striped">
+                                        <tr>
+                                        <th>Date</th>
+                                        <th>Location</th>
+                                        <th>Description</th>
+                                        </tr>
+                                        <tr id="list" *ngFor="let x of tracklocations; let i=index">
+                                            <td *ngIf="i == 2">{{x.date}}</td>
+                                            <td *ngIf="i == 2">{{x.location}}</td>
+                                            <td *ngIf="i == 2">{{x.description}}</td>
+                                            <td *ngIf="i == 3">{{x.date}}</td>
+                                            <td *ngIf="i == 3">{{x.location}}</td>
+                                            <td *ngIf="i == 3">{{x.description}}</td>
+                                        </tr>
+                                      
+                                    </table>
+                                    </div>
+                                    </div>
+                                    <!-- Out for Delivery End-->
+                                    <!-- Delieverd-->
+                                    <div *ngIf="delivered" class="container" [@list]="tracklocations.length">
+                                        <h1>Delievered</h1>
+                                            <div class="container">
+                                                <table class="table table-striped">
+                                                    <tr>
+                                                    <th>Date</th>
+                                                    <th>Location</th>
+                                                    <th>Description</th>
+                                                    </tr>
+                                                    <tr  id="list" *ngFor="let x of tracklocations; let i=index">
+                                                        <td *ngIf="i == 4">{{x.date}}</td>
+                                                        <td *ngIf="i == 4">{{x.location}}</td>
+                                                        <td *ngIf="i == 4">{{x.description}}</td>
+                                                        <td *ngIf="i == 5">{{x.date}}</td>
+                                                        <td *ngIf="i == 5">{{x.location}}</td>
+                                                        <td *ngIf="i == 5">{{x.description}}</td>
+                                                    </tr>
+                                                  
+                                                </table>
+                                                </div>
+                                                </div>
+                                                <!-- End of delivery-->
+
+        </div>
+    </div>
+</div>
+
+
+
+ <!-- ordered-->
+
+        <div>

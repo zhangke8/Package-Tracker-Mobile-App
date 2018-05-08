@@ -1,0 +1,22 @@
+{
+  "name": "app1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "mongodb": "^3.0.6",
+    "mongoose": "^5.0.14"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.3",
+    "nodemon": "^1.17.3"
+  }
+}
