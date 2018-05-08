@@ -43,7 +43,7 @@ import { AuthGuardService } from './authentication/auth-guard.service';
       { path: 'register', component: RegisterComponent},
       { path: 'profile', component: ProfileComponent},
       { path: '', redirectTo: 'home', pathMatch: 'full'},
-      { path: '**', redirectTo: 'createorder', pathMatch: 'full'}
+      { path: '**', redirectTo: 'createorder', pathMatch: 'full'},
     ])
   ],
   providers: [OrderService, ItemService, ProductApiService, AuthenticationService, AuthGuardService],
