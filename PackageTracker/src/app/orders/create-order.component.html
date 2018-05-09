@@ -46,7 +46,7 @@
           <th scope="col">ID</th>
           <th scope="col">Price</th>
           <th scope="col">Track ID</th>
-          <th scope="col">Update</th>
+          <!-- <th scope="col">Update</th> -->
           <th scope="col">Delete</th>
         </tr>
       </thead>
@@ -55,7 +55,7 @@
           <td><a [routerLink] = "['/orderdetail',order._id]">{{order._id}}</a></td>
           <td>{{order.price}}</td>
           <td>{{order.trackerId}}</td>
-          <td><button type="button" (click)="onEdit(order)" class="btn btn-primary">Edit</button></td>
+          <!-- <td><button type="button" (click)="onEdit(order)" class="btn btn-primary">Edit</button></td> -->
           <td><button type="button" (click)="onDelete(order,order._id)" class="btn btn-danger">Delete</button></td>
         </tr>
       </tbody>
