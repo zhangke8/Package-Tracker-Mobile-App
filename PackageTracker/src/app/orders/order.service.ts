@@ -16,11 +16,6 @@ export class OrderService {
         return this.http.get(this.orderUrl + '/items/' + id)
         .map((response: Response) => response.json());
     }
-
-    getOrders() {
-        return this.http.get(this.orderUrl)
-        .map((response: Response) => response.json());
-    }
     updateOrder(order, id: string) {
         return this.http.put(this.orderUrl + '/' + id, order)
         .map((response: Response) => response.json());
@@ -29,4 +24,14 @@ export class OrderService {
         return this.http.delete(this.orderUrl + '/' + id, order)
         .map((response: Response) => response.json());
     }
+
+    // getTrackinig(id: string) {
+    //     this._trackingService.getTrackerDetail(id).subscribe(
+      
+    //       trackstatus => {
+    //         this.trackstatus = trackstatus;
+    //         this.tracklocations = trackstatus.locationtracker;
+    //       },
+    //       error => this.errorMessage = <any>error);
+    //   }
 }

@@ -28,7 +28,26 @@
             </div>
             <div>&nbsp;</div>
         </div>
-       
+    </div>
+
+    <div class = 'table-responsive'>
+        <table class = 'table' *ngIf = 'tracklocations && tracklocations.length'>
+                <thead>
+                        <tr>
+                          <th> Date </th>
+                          <th> Location </th>
+                          <th> Description </th>
+                        </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor = 'let track of tracklocations'>
+                        <td>{{track.date}}</td>
+                        <td>{{track.location}}</td>
+                        <td>{{track.description}}</td>
+
+                    </tr>
+                </tbody>
+        </table>
     </div>
 
     <div class='panel-footer'>
