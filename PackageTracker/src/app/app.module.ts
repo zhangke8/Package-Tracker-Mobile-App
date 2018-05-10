@@ -23,7 +23,7 @@ import { AuthGuardService } from './authentication/auth-guard.service';
     AppComponent,
     CreateOrderComponent,
     OrderDetailComponent,
-	ProductListComponent,
+	  ProductListComponent,
     HomeComponent,
     LoginComponent,
     RegisterComponent,
