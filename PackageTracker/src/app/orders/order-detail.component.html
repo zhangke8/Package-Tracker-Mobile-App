@@ -1,58 +1,143 @@
-<div class='panel panel-primary' *ngIf='orderItems && orderItems.length'>
-    <div class='panel-heading'>
-        Order Detail
-    </div>
-
-    <div class='panel-body'>
-        <div class='row' *ngFor = 'let item of orderItems'>
-            <div class='col-md-6'>
-                <div class='row'>
-                    <div class='col-md-3'>Name:</div>
-                    <div class='col-md-6'>{{item.name}}</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <div class='panel panel-primary' *ngIf='orderItems && orderItems.length'>
+                <div class='panel-heading'>
+                    Order Detail
                 </div>
-                <div class='row'>
-                    <div class='col-md-3'>Price:</div>
-                    <div class='col-md-6'>${{item.price}}</div>
+            
+                <div class='panel-body'>
+                    <div class='row' *ngFor = 'let item of orderItems'>
+                        <div class='col-md-6'>
+                            <div class='row'>
+                                <div class='col-md-3'>Name:</div>
+                                <div class='col-md-6'>{{item.name}}</div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-md-3'>Price:</div>
+                                <div class='col-md-6'>${{item.price}}</div>
+                            </div>
+                            <div class='row'>
+                                <div class='col-md-3'>Quantity:</div>
+                                <div class='col-md-6'>{{item.quantity}}</div>
+                            </div>
+                        </div>
+            
+                        <div class='col-md-6'>
+                            <img class='center-block img-responsive' 
+                                 [style.width.px]='200' 
+                                 [style.margin.px]='2' 
+                                 [src]='item.imageUrl'>
+                        </div>
+                        <div>&nbsp;</div>
+                    </div>
                 </div>
-                <div class='row'>
-                    <div class='col-md-3'>Quantity:</div>
-                    <div class='col-md-6'>{{item.quantity}}</div>
+            
+                <div class = 'table-responsive'>
+                    <table class = 'table' *ngIf = 'tracklocations && tracklocations.length'>
+                            <thead>
+                                    <tr>
+                                      <th> Date </th>
+                                      <th> Location </th>
+                                      <th> Description </th>
+                                    </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor = 'let track of tracklocations'>
+                                    <td>{{track.date}}</td>
+                                    <td>{{track.location}}</td>
+                                    <td>{{track.description}}</td>
+            
+                                </tr>
+                            </tbody>
+                    </table>
+                </div>
+            
+                <div class='panel-footer'>
+                    <a class='btn btn-default' (click)='onBack()' style='width:80px'>
+                        <i class='glyphicon glyphicon-chevron-left'></i> Back
+                    </a>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h1>CheckBxs</h1>
+                        <button class="btn btn-primary"> Click me</button>  
+                </div>
+                    
                 </div>
             </div>
-
-            <div class='col-md-6'>
-                <img class='center-block img-responsive' 
-                     [style.width.px]='200' 
-                     [style.margin.px]='2' 
-                     [src]='item.imageUrl'>
-            </div>
-            <div>&nbsp;</div>
         </div>
-    </div>
-
-    <div class = 'table-responsive'>
-        <table class = 'table' *ngIf = 'tracklocations && tracklocations.length'>
-                <thead>
+        <div class="col-md-6">
+                <h1>Here are the animations for you</h1>
+   <!-- Shipped-->
+   <div *ngIf="shipped" class="container" [@list]="tracklocations.length">
+    <h1>Shipped</h1>
+        <div class="container">
+            <table class="table table-striped">
+                <tr>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Description</th>
+                </tr>
+                <tr *ngFor="let x of tracklocations; let i=index">
+                    <td *ngIf="i ==0">{{x.date}}</td>
+                    <td *ngIf="i ==0">{{x.location}}</td>
+                    <td *ngIf="i ==0">{{x.description}}</td>
+                    <td *ngIf="i ==1">{{x.date}}</td>
+                    <td *ngIf="i ==1">{{x.location}}</td>
+                    <td *ngIf="i ==1">{{x.description}}</td>
+                </tr>
+              
+            </table>
+            </div>
+            </div>
+            <!-- Shipped-->
+        <!-- Out for delivery-->
+        <div *ngIf="out_for_delivery" class="container" [@list]="tracklocations.length" >
+                <h1>Our for Delievery</h1>
+                <div class="container">
+                    <table class="table table-striped">
                         <tr>
-                          <th> Date </th>
-                          <th> Location </th>
-                          <th> Description </th>
+                        <th>Date</th>
+                        <th>Location</th>
+                        <th>Description</th>
                         </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor = 'let track of tracklocations'>
-                        <td>{{track.date}}</td>
-                        <td>{{track.location}}</td>
-                        <td>{{track.description}}</td>
-
-                    </tr>
-                </tbody>
-        </table>
-    </div>
-
-    <div class='panel-footer'>
-        <a class='btn btn-default' (click)='onBack()' style='width:80px'>
-            <i class='glyphicon glyphicon-chevron-left'></i> Back
-        </a>
+                        <tr id="list" *ngFor="let x of tracklocations; let i=index">
+                            <td *ngIf="i == 2">{{x.date}}</td>
+                            <td *ngIf="i == 2">{{x.location}}</td>
+                            <td *ngIf="i == 2">{{x.description}}</td>
+                            <td *ngIf="i == 3">{{x.date}}</td>
+                            <td *ngIf="i == 3">{{x.location}}</td>
+                            <td *ngIf="i == 3">{{x.description}}</td>
+                        </tr>
+                      
+                    </table>
+                    </div>
+                    </div>
+                    <!-- Out for Delivery End-->
+                    <!-- Delieverd-->
+                    <div *ngIf="delivered" class="container" [@list]="tracklocations.length">
+                        <h1>Delievered</h1>
+                            <div class="container">
+                                <table class="table table-striped">
+                                    <tr>
+                                    <th>Date</th>
+                                    <th>Location</th>
+                                    <th>Description</th>
+                                    </tr>
+                                    <tr  id="list" *ngFor="let x of tracklocations; let i=index">
+                                        <td *ngIf="i == 4">{{x.date}}</td>
+                                        <td *ngIf="i == 4">{{x.location}}</td>
+                                        <td *ngIf="i == 4">{{x.description}}</td>
+                                        <td *ngIf="i == 5">{{x.date}}</td>
+                                        <td *ngIf="i == 5">{{x.location}}</td>
+                                        <td *ngIf="i == 5">{{x.description}}</td>
+                                    </tr>
+                                  
+                                </table>
+                                </div>
+                                </div>
+                                <!-- End of delivery-->
+        </div>
     </div>
 </div>
