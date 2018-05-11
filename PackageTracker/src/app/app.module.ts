@@ -18,6 +18,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AuthenticationService } from './authentication/authentication.service';
 import { AuthGuardService } from './authentication/auth-guard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TrackingService } from './orders/tracking.service';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
       { path: '**', redirectTo: 'createorder', pathMatch: 'full'}
     ])
   ],
-  providers: [OrderService, ItemService, ProductApiService, AuthenticationService, AuthGuardService],
+  providers: [OrderService, ItemService, ProductApiService, AuthenticationService, AuthGuardService, TrackingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

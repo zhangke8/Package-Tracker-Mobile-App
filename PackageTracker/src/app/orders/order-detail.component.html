@@ -58,12 +58,12 @@
                         <i class='glyphicon glyphicon-chevron-left'></i> Back
                     </a>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <h1>CheckBxs</h1>
-                        <button class="btn btn-primary"> Click me</button>  
-                </div>
-                    
+                <div class="row">     
+                    <div class='col-md-6' >
+                        Shipped <input id="shipped" type='checkbox'   [checked] ='shipped' (change)="shipped = !shipped" />
+                        Out for delivery <input id="out_for_delivery" type='checkbox' [checked] ='out_for_delivery' (change)="out_for_delivery = !out_for_delivery" />
+                        Delivered <input id="delivered" type='checkbox'  [checked] ='delivered' (change)="delivered = !delivered" />
+                    </div>
                 </div>
             </div>
         </div>
@@ -90,54 +90,54 @@
               
             </table>
             </div>
-            </div>
-            <!-- Shipped-->
-        <!-- Out for delivery-->
-        <div *ngIf="out_for_delivery" class="container" [@list]="tracklocations.length" >
-                <h1>Our for Delievery</h1>
-                <div class="container">
-                    <table class="table table-striped">
-                        <tr>
-                        <th>Date</th>
-                        <th>Location</th>
-                        <th>Description</th>
-                        </tr>
-                        <tr id="list" *ngFor="let x of tracklocations; let i=index">
-                            <td *ngIf="i == 2">{{x.date}}</td>
-                            <td *ngIf="i == 2">{{x.location}}</td>
-                            <td *ngIf="i == 2">{{x.description}}</td>
-                            <td *ngIf="i == 3">{{x.date}}</td>
-                            <td *ngIf="i == 3">{{x.location}}</td>
-                            <td *ngIf="i == 3">{{x.description}}</td>
-                        </tr>
-                      
-                    </table>
-                    </div>
-                    </div>
-                    <!-- Out for Delivery End-->
-                    <!-- Delieverd-->
-                    <div *ngIf="delivered" class="container" [@list]="tracklocations.length">
-                        <h1>Delievered</h1>
-                            <div class="container">
-                                <table class="table table-striped">
-                                    <tr>
-                                    <th>Date</th>
-                                    <th>Location</th>
-                                    <th>Description</th>
-                                    </tr>
-                                    <tr  id="list" *ngFor="let x of tracklocations; let i=index">
-                                        <td *ngIf="i == 4">{{x.date}}</td>
-                                        <td *ngIf="i == 4">{{x.location}}</td>
-                                        <td *ngIf="i == 4">{{x.description}}</td>
-                                        <td *ngIf="i == 5">{{x.date}}</td>
-                                        <td *ngIf="i == 5">{{x.location}}</td>
-                                        <td *ngIf="i == 5">{{x.description}}</td>
-                                    </tr>
-                                  
-                                </table>
-                                </div>
-                                </div>
-                                <!-- End of delivery-->
-        </div>
+    </div>
+     <!-- Shipped-->
+    <!-- Out for delivery-->
+    <div *ngIf="out_for_delivery" class="container" [@list]="tracklocations.length" >
+            <h1>Our for Delievery</h1>
+            <div class="container">
+                <table class="table table-striped">
+                    <tr>
+                    <th>Date</th>
+                    <th>Location</th>
+                    <th>Description</th>
+                    </tr>
+                    <tr id="list" *ngFor="let x of tracklocations; let i=index">
+                        <td *ngIf="i == 2">{{x.date}}</td>
+                        <td *ngIf="i == 2">{{x.location}}</td>
+                        <td *ngIf="i == 2">{{x.description}}</td>
+                        <td *ngIf="i == 3">{{x.date}}</td>
+                        <td *ngIf="i == 3">{{x.location}}</td>
+                        <td *ngIf="i == 3">{{x.description}}</td>
+                    </tr>
+                    
+                </table>
+                </div>
+    </div>
+    <!-- Out for Delivery End-->
+    <!-- Delieverd-->
+    <div *ngIf="delivered" class="container" [@list]="tracklocations.length">
+                    <h1>Delievered</h1>
+                        <div class="container">
+                            <table class="table table-striped">
+                                <tr>
+                                <th>Date</th>
+                                <th>Location</th>
+                                <th>Description</th>
+                                </tr>
+                                <tr  id="list" *ngFor="let x of tracklocations; let i=index">
+                                    <td *ngIf="i == 4">{{x.date}}</td>
+                                    <td *ngIf="i == 4">{{x.location}}</td>
+                                    <td *ngIf="i == 4">{{x.description}}</td>
+                                    <td *ngIf="i == 5">{{x.date}}</td>
+                                    <td *ngIf="i == 5">{{x.location}}</td>
+                                    <td *ngIf="i == 5">{{x.description}}</td>
+                                </tr>
+                                
+                            </table>
+                            </div>
+    </div>
+    <!-- End of delivery-->
+    </div>
     </div>
 </div>
