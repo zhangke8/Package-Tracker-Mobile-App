@@ -25,13 +25,7 @@ export class OrderService {
         .map((response: Response) => response.json());
     }
 
-    // getTrackinig(id: string) {
-    //     this._trackingService.getTrackerDetail(id).subscribe(
-      
-    //       trackstatus => {
-    //         this.trackstatus = trackstatus;
-    //         this.tracklocations = trackstatus.locationtracker;
-    //       },
-    //       error => this.errorMessage = <any>error);
-    //   }
 }
+
+
+
