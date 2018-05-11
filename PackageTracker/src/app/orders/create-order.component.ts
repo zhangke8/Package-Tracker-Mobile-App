@@ -22,7 +22,7 @@ export class CreateOrderComponent implements OnInit {
     this.total = 0;
     this.submit = true;
     this.order = {_id: '', trackerId: '', price: null, orderItems: null};
-    // this.orderService.getOrders().subscribe(data => this.orderList = data);
+    this.orderService.getOrders().subscribe(data => this.orderList = data);
     this.itemService.getItems().subscribe(data => this.itemList = data);
   }
   onSave(order) {
