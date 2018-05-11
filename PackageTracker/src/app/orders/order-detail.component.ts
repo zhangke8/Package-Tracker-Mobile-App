@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrderService } from './order.service';
 import { IItem } from '../items/item';
 import { ActivatedRoute, Router} from '@angular/router';
-// import { IOrder } from './order';
+import { IOrder } from './order';
 // import { ITrackingStatus } from './trackingstatus';
 // import { TrackingService } from './tracking.service';
 // import { ITrackingLocations } from './trackinglocations';
@@ -13,10 +13,10 @@ import { ActivatedRoute, Router} from '@angular/router';
   styleUrls: ['./order-detail.component.css']
 })
 export class OrderDetailComponent implements OnInit {
-  // order: IOrder;
+  order: IOrder;
   // trackstatus: ITrackingStatus;
   // tracklocations: ITrackingLocations[];
-  // errorMessage: string;
+  errorMessage: string;
   constructor(private route: ActivatedRoute,
     private router: Router,
     private orderService: OrderService) { }
