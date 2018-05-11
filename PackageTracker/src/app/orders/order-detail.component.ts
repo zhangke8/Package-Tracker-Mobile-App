@@ -35,8 +35,7 @@ import { ITrackingLocations } from './trackinglocations';
 export class OrderDetailComponent implements OnInit {
   order: IOrder;
   trackstatus: ITrackingStatus;
-  // tracklocations: ITrackingLocations[];
-  tracklocations: [any];
+  tracklocations: ITrackingLocations[];
   errorMessage: string;
   list: any = [];
   status = false;
