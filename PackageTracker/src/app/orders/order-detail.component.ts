@@ -9,7 +9,6 @@ import { ITrackingStatus } from './trackingstatus';
 import { TrackingService } from './tracking.service';
 import { ITrackingLocations } from './trackinglocations';
 
-
 @Component({
   selector: 'app-order-detail',
   templateUrl: './order-detail.component.html',
