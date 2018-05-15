@@ -10,13 +10,15 @@ import { ITrackingStatus } from './trackingstatus';
 @Injectable()
 export class TrackingService {
     private _trackingUrl = './api/tracking/trackings.json';
-    constructor(private _http: HttpClient) { }
+    constructor(private http: HttpClient) { }
+    getJsonData(): Promise<any[]>{
+        return this.http.get<any[]>('http://localhost:4200/api/tracking/trackings.json').toPromise();
+    }
     getTracking(): Observable<ITrackingStatus[]> {
-        return this._http.get<ITrackingStatus[]>(this._trackingUrl)
+        return this.http.get<ITrackingStatus[]>(this._trackingUrl)
         .do(data => console.log('Data: ' + JSON.stringify(data)))
         .catch(this.handleError);
     }
-
     getTrackerDetail(id: string): Observable<ITrackingStatus> {
         return this.getTracking()
             .map((orders: ITrackingStatus[]) => orders.find(o => o._id === id));

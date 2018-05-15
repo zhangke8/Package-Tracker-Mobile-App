@@ -40,7 +40,7 @@ import { TrackingService } from './orders/tracking.service';
     RouterModule.forRoot([
       { path: 'createorder', component: CreateOrderComponent, canActivate: [AuthGuardService]},
       { path: 'orderdetail/:id', component: OrderDetailComponent},
-	  { path: 'products', component: ProductListComponent},
+	    { path: 'products', component: ProductListComponent},
       { path: 'home', component: HomeComponent},
       { path: 'login', component: LoginComponent},
       { path: 'register', component: RegisterComponent},

@@ -34,7 +34,7 @@
                 </div>
             
                 <div class = 'table-responsive'>
-                    <table class = 'table' *ngIf = 'tracklocations && tracklocations?.length > 0'>
+                    <table class = 'table' *ngIf = 'packageLocation && packageLocation?.length > 0'>
                             <thead>
                                     <tr>
                                       <th> Date </th>
@@ -43,7 +43,7 @@
                                     </tr>
                             </thead>
                             <tbody>
-                                <tr *ngFor = 'let track of tracklocations'>
+                                <tr *ngFor = 'let track of packageLocation'>
                                     <td>{{track.date}}</td>
                                     <td>{{track.location}}</td>
                                     <td>{{track.description}}</td>
@@ -59,8 +59,9 @@
                     </a>
                 </div>
                 <div class="row">     
-                    <div class='col-md-6' >
-                        Shipped <input id="shipped" type='checkbox'   [checked] ='shipped' (change)="shipped = !shipped" />
+                    <div class='col-md-10' >
+                        Shipped <input id="shipped" type='checkbox' [checked] ='shipped' (change)="shipped = !shipped" />
+                        Carrier Facility <input id="carrier_facility" type='checkbox'  [checked] ='carrier_facility' (change)="carrier_facility = !carrier_facility" />
                         Out for delivery <input id="out_for_delivery" type='checkbox' [checked] ='out_for_delivery' (change)="out_for_delivery = !out_for_delivery" />
                         Delivered <input id="delivered" type='checkbox'  [checked] ='delivered' (change)="delivered = !delivered" />
                     </div>
@@ -70,7 +71,7 @@
         <div class="col-md-6">
                 <h1>Here are the animations for you</h1>
    <!-- Shipped-->
-   <div *ngIf="shipped" class="container" [@list]="tracklocations.length">
+   <div *ngIf="shipped" class="container" [@listAnimation]="packageLocation.length">
     <h1>Shipped</h1>
         <div class="container">
             <table class="table table-striped">
@@ -79,21 +80,48 @@
                 <th>Location</th>
                 <th>Description</th>
                 </tr>
-                <tr *ngFor="let x of tracklocations; let i=index">
-                    <td *ngIf="i ==0">{{x.date}}</td>
-                    <td *ngIf="i ==0">{{x.location}}</td>
-                    <td *ngIf="i ==0">{{x.description}}</td>
-                    <td *ngIf="i ==1">{{x.date}}</td>
-                    <td *ngIf="i ==1">{{x.location}}</td>
-                    <td *ngIf="i ==1">{{x.description}}</td>
+                <tr  id="list" *ngFor="let x of packageLocation">
+                    <td >{{packageLocation[0].locationtracker[5].date}}</td>
+                    <td >{{packageLocation[0].locationtracker[5].location}}</td>
+                    <td >{{packageLocation[0].locationtracker[5].description}}</td>
                 </tr>
-              
+                
             </table>
             </div>
     </div>
      <!-- Shipped-->
+<!-- Carrier Facility-->
+     <div *ngIf="out_for_delivery" class="container" [@listAnimation]="packageLocation.length" >
+        <h1>Carrier Facility</h1>
+        <div class="container">
+            <table class="table table-striped">
+                <tr>
+                <th>Date</th>
+                <th>Location</th>
+                <th>Description</th>
+                </tr>
+                <tr  id="list" *ngFor="let x of packageLocation">
+                    <td >{{packageLocation[0].locationtracker[4].date}}</td>
+                    <td >{{packageLocation[0].locationtracker[4].location}}</td>
+                    <td >{{packageLocation[0].locationtracker[4].description}}</td>
+                </tr>
+                <tr id="list" *ngFor="let x of packageLocation">
+                    <td >{{packageLocation[0].locationtracker[3].date}}</td>
+                    <td >{{packageLocation[0].locationtracker[3].location}}</td>
+                    <td >{{packageLocation[0].locationtracker[3].description}}</td>
+                </tr>
+                <tr  id="list" *ngFor="let x of packageLocation">
+                    <td >{{packageLocation[0].locationtracker[2].date}}</td>
+                    <td >{{packageLocation[0].locationtracker[2].location}}</td>
+                    <td >{{packageLocation[0].locationtracker[2].description}}</td>
+                </tr>
+                
+            </table>
+            </div>
+    </div>
+<!-- Out for Delivery End-->
     <!-- Out for delivery-->
-    <div *ngIf="out_for_delivery" class="container" [@list]="tracklocations.length" >
+    <div *ngIf="out_for_delivery" class="container" [@listAnimation]="packageLocation.length" >
             <h1>Out for Delievery</h1>
             <div class="container">
                 <table class="table table-striped">
@@ -102,22 +130,18 @@
                     <th>Location</th>
                     <th>Description</th>
                     </tr>
-                    <tr id="list" *ngFor="let x of tracklocations; let i=index">
-                        <td *ngIf="i == 2">{{x.date}}</td>
-                        <td *ngIf="i == 2">{{x.location}}</td>
-                        <td *ngIf="i == 2">{{x.description}}</td>
-                        <td *ngIf="i == 3">{{x.date}}</td>
-                        <td *ngIf="i == 3">{{x.location}}</td>
-                        <td *ngIf="i == 3">{{x.description}}</td>
+                    <tr  id="list" *ngFor="let x of packageLocation">
+                        <td >{{packageLocation[0].locationtracker[1].date}}</td>
+                        <td >{{packageLocation[0].locationtracker[1].location}}</td>
+                        <td >{{packageLocation[0].locationtracker[1].description}}</td>
                     </tr>
-                    
                 </table>
                 </div>
     </div>
     <!-- Out for Delivery End-->
     <!-- Delieverd-->
-    <div *ngIf="delivered" class="container" [@list]="tracklocations.length">
-                    <h1>Delievered</h1>
+    <div *ngIf="delivered" class="container" [@listAnimation]="packageLocation.length">
+                    <h1>Delivered</h1>
                         <div class="container">
                             <table class="table table-striped">
                                 <tr>
@@ -125,13 +149,11 @@
                                 <th>Location</th>
                                 <th>Description</th>
                                 </tr>
-                                <tr  id="list" *ngFor="let x of tracklocations; let i=index">
-                                    <td *ngIf="i == 4">{{x.date}}</td>
-                                    <td *ngIf="i == 4">{{x.location}}</td>
-                                    <td *ngIf="i == 4">{{x.description}}</td>
-                                    <td *ngIf="i == 5">{{x.date}}</td>
-                                    <td *ngIf="i == 5">{{x.location}}</td>
-                                    <td *ngIf="i == 5">{{x.description}}</td>
+                                
+                                <tr  id="list" *ngFor="let x of packageLocation">
+                                    <td >{{packageLocation[0].locationtracker[0].date}}</td>
+                                    <td >{{packageLocation[0].locationtracker[0].location}}</td>
+                                    <td >{{packageLocation[0].locationtracker[0].description}}</td>
                                 </tr>
                                 
                             </table>
