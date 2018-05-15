@@ -8,7 +8,6 @@ import { TrackingService } from './tracking.service';
 import { ITrackingLocations } from './trackinglocations';
 import { trigger,style,transition,animate,keyframes,query,stagger } from '@angular/animations';
 import { HttpClient } from '@angular/common/http';
-// import { packageLocation } from 
 
 @Component({
   selector: 'app-order-detail',
@@ -34,7 +33,6 @@ import { HttpClient } from '@angular/common/http';
 export class OrderDetailComponent implements OnInit {
   order: IOrder;
   trackstatus: ITrackingStatus;
-  // tracklocations : ITrackingLocations[];
   list: any = [];
   packageLocation = [
     {
