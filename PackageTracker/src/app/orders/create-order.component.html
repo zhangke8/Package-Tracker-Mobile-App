@@ -1,5 +1,8 @@
 <div class="container">
-  <div class = 'table-responsive'>
+  <div class="row">
+    <div class="col-md-4">
+<!-- Create order table-->
+<div class = 'table-responsive'>
     <table class = 'table' *ngIf = 'itemList && itemList.length'>
       <thead>
         <tr>
@@ -22,44 +25,85 @@
       </tbody>
     </table>
   </div>
-  <h1>Order Form</h1>
-  <form #orderForm="ngForm" (ngSubmit) = "onSave(orderForm.value)">
-
-    <div class="form-group">
-      <label for="price"> Price </label>  ${{total}}
+<!-- Create order table-->
     </div>
+    <div class="col-md-4">
+     <!-- 
+          <table class="table" border='1' *ngIf='editList && editList.length'>
+              <thead class="thead-dark">
+                <tr>
+                  <th scope="col">Name</th>
+                  <th scope="col">Price</th>
+                  <th scope="col">Edit</th>
+                  
+                  <th scope="col">Remove</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let edit of editList">
+                  <td>{{edit.name}}</td>
+                  <td>{{edit.price}}</td>
+                  <td><button type="button" class="btn btn-primary" (click) = "addItem(item)">Add</button></td>
+                  <td><button type="button" class = "btn btn-warning" (click) = "removeItem(item)">Remove</button></td>
+                </tr>
+              </tbody>
+          </table>
+        -->
+      <!-- Order Form-->
+     
+  
+        <h1>Order Form</h1>
+        <form #orderForm="ngForm" (ngSubmit) = "onSave(orderForm.value)">
+      
+          <div class="form-group">
+            <span class="label label-default" for="price"> Price </span> <span class="glyphicon glyphicon-usd"> </span> {{total}}
+          </div>
+      
+          <div class="form-group">
+              <label for="trackerId"> Track ID </label>
+              <input type="text" class="form-control" id="trackerId" [(ngModel)] = 'order.trackerId' name = 'trackerId' required>
+              <label for="trackerId"> Order Name </label>
+              <input type="text" class="form-control" name="orderName" [(ngModel)]="name">
+            </div>
+      
+          <!-- <button type="submit" class="btn btn-success">{{submit ? 'Submit' : 'Update'}}</button>  -->
+          <button type="submit" class="btn btn-success">{{submit ? 'Submit' : ''}}</button> 
+          <button type="button" (click) = "ngOnInit()" class = "btn btn-danger">Clear</button>
+      </form>
+      
+        <!-- Order Form-->
+    </div>
+    <div class="col-md-4">
+        <table class="table" border='1' *ngIf='orderList && orderList.length'>
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Price</th>
+                <th scope="col">Track ID</th>
+                <!-- <th scope="col">Update</th> -->
+                <th scope="col">Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let order of orderList">
+                <td><a [routerLink] = "['/orderdetail',order._id]">{{order._id}}</a></td>
+                <td>{{order.price}}</td>
+                <td>{{order.trackerId}}</td>
+                <!-- <td><button type="button" (click)="onEdit(order)" class="btn btn-primary">Edit</button></td> -->
+                <td><button type="button" (click)="onDelete(order,order._id)" class="btn btn-danger">Delete</button></td>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>
+  <!-- this where the table used to be-->
+    <!-- Insert code here-->
+  <!-- this where the table used to be-->
+    <!-- this where the form used to be-->
+    <!-- Insert code here-->
+  <!-- this where the form used to be-->
+ 
+<!-- this where the tracker id table was-->
 
-    <div class="form-group">
-        <label for="trackerId"> Track ID </label>
-        <input type="text" class="form-control" id="trackerId" [(ngModel)] = 'order.trackerId' name = 'trackerId' required>
-      </div>
-
-    <!-- <button type="submit" class="btn btn-success">{{submit ? 'Submit' : 'Update'}}</button>  -->
-    <button type="submit" class="btn btn-success">{{submit ? 'Submit' : ''}}</button> 
-    <button type="button" (click) = "ngOnInit()" class = "btn btn-danger">Clear</button>
-</form>
-<div>
-
-</div>
-  <table class="table" border='1' *ngIf='orderList && orderList.length'>
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">ID</th>
-          <th scope="col">Price</th>
-          <th scope="col">Track ID</th>
-          <!-- <th scope="col">Update</th> -->
-          <th scope="col">Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let order of orderList">
-          <td><a [routerLink] = "['/orderdetail',order._id]">{{order._id}}</a></td>
-          <td>{{order.price}}</td>
-          <td>{{order.trackerId}}</td>
-          <!-- <td><button type="button" (click)="onEdit(order)" class="btn btn-primary">Edit</button></td> -->
-          <td><button type="button" (click)="onDelete(order,order._id)" class="btn btn-danger">Delete</button></td>
-        </tr>
-      </tbody>
-  </table>
 
 </div>

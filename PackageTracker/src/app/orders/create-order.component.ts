@@ -1,3 +1,4 @@
+import { EditItem } from './../items/item';
 import { Component, OnInit } from '@angular/core';
 import { IOrder } from './order';
 import { OrderService } from './order.service';
@@ -18,12 +19,16 @@ export class CreateOrderComponent implements OnInit {
   productList: any = {};
   total: number;
   submit = true;
+  name: string;
+  //names: ["computer","tablet","shampoo","ramen"];
+  editList: EditItem[] = [];
   ngOnInit() {
     this.total = 0;
     this.submit = true;
     this.order = {_id: '', trackerId: '', price: null, orderItems: null};
     this.orderService.getOrders().subscribe(data => this.orderList = data);
     this.itemService.getItems().subscribe(data => this.itemList = data);
+    //this.itemService.getItems().subscribe(data => this.editList = data);
   }
   onSave(order) {
     const stringifiedOrder = JSON.stringify(order);
@@ -69,6 +74,9 @@ export class CreateOrderComponent implements OnInit {
 
   addItem(item) {
     this.total += item.price;
+    this.name = item.name;
+    this.editList += item.price;
+    this.editList += item.name;
     this.total = Number(this.total.toFixed(2));
     if (this.productList.hasOwnProperty(item._id)) {
       this.productList[item._id] += 1;

@@ -6,3 +6,8 @@ export interface IItem {
   quantity: number;
   added: number;
 }
+
+export interface EditItem{
+name: string;
+price: number;
+}
