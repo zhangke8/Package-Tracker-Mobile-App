@@ -3,3 +3,4 @@ i create a slack group, https://join.slack.com/t/miraclesoftwaregroup/shared_inv
 
 inside folder "OrderTrackingAPI", run bash terminals for "mongod" and "node server.js"
 inside folder "PackageTracker", open powershell and run "npm start"
+go to localhost:27017 to view
