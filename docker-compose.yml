@@ -1,0 +1,23 @@
+version: '3.0' #specifiy docker-compose version
+
+# Define the services/containers to be run
+services:
+  angular: #name of the first service
+  build: PackageTracker #specifify the directory fo the Dockerfile
+  ports:
+    - "4200:4200" #specify port mapping
+
+  express: #name of the sacond service
+    build: OrderTrackingAPI #specify the directory fo the dockerfile
+    ports: 
+   - "8000:8000" #specify ports mapping
+   links:
+    - database #link this service to the database service
+
+database: #name of the third service
+	image: mongo #specify image to build container from 
+	ports:
+	- "27017:27017" #specifiy port forwarding
+
+
+
