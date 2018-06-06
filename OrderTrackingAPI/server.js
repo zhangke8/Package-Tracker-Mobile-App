@@ -35,6 +35,7 @@ app.use(function (req, res, next) {
   });
 
 app.use(passport.initialize());
+app.get('/', (req, res)=>{res.send("hey!")});
 app.use('/api',orderRoute);
 app.use('/api',itemRoute);
 app.use('/api',authRoute);
